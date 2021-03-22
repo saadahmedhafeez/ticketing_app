@@ -1,0 +1,49 @@
+<body>
+    <div class="modal fade in">
+        <div class="modal-dialog">
+            <form [formGroup]="myForm" (ngSubmit)="formProcess()">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><i class="fa fa-plus"></i> Create Ticket</h4>
+                        <a href="/home">x</a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group" for="subject">Subject
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject"
+                                required="" formControlName='subject'>
+                        </div>
+                        <div>
+                            <label for="department" class="control-label">Department</label>
+                            <select id="department" name="department" class="form-control" placeholder="Department..."
+                                formControlName='department'>
+                                <option value="1">Support</option>
+                                <option value="2">Sales</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="control-label">Message</label>
+                            <textarea class="form-control" rows="5" id="message" name="message"
+                                formControlName='msg'></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="status" class="control-label">Status</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="status" id="open" value="0" checked="" required=""
+                                    formControlName='status'>Open
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="status" id="close" value="1" required=""
+                                    formControlName='status'>Close
+                            </label>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" name="save" id="save" class="btn btn-info" value="Save Ticket" (click)="closeModelBox()">
+                        <a class="btn btn-primary" (click)="closeModelBox()">Close</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

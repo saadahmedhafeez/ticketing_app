@@ -1,0 +1,24 @@
+
+.fade {
+    opacity: 1;
+}
+.modal-content {
+    box-shadow: 0 3px 9px rgb(0 0 0 / 50%);
+}
+
+#ticketForm{
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+/* .form-size{
+    overflow-y:scroll;
+} */
+
+.modal-dialog{
+    margin-top: 100px;
+}
+
+.modal-body{
+    overflow-y: scroll;
+}

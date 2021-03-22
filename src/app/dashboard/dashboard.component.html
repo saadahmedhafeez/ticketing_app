@@ -1,0 +1,172 @@
+<body>
+    <div class="container">
+        <div class="home-sections">
+            <h3>Example: Build Helpdesk System with Angular &amp; MySQL</h3>
+            <nav class="navbar navbar-inverse" style="background:#00796B;color:#f6f8f9;font-weight:bold;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="home" class="navbar-brand" id="index_menu">Dashboard</a>
+                    </div>
+                    <div>
+                        <ul class="nav navbar-nav navbar-brand">
+                            <li><span (click)="openCreateTicket()" class="create-hover">Create Ticket</span></li>
+                        </ul>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                class="label label-pill label-danger count"></span>&nbsp;admin</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#settings">Account</a></li>
+                                <li><a href="#logout">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- <mat-form-field appearance="fill">
+                        <mat-label>Cars</mat-label>
+                        <select matNativeControl required>
+                            <option value="volvo">Plane</option>
+                            <option value="saab">Train</option>
+                            <option value="mercedes">Car</option>
+                        </select>
+                    </mat-form-field> -->
+                </div>
+            </nav>
+        </div>
+        <div class="">
+            <p>View and manage tickets that may have responses from support team.</p>
+            <div id="listTickets_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                <!-- <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6">
+                        <div id="listTickets_filter" class="dataTables_filter"><label>Search:<input type="search"
+                                    class="form-control input-sm" placeholder="" aria-controls="listTickets"></label>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="listTickets" class="table table-bordered table-striped dataTable no-footer"
+                            role="grid" aria-describedby="listTickets_info" style="width: 1143px;">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="S/N"
+                                        style="width: 29px;">S/N</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="listTickets" rowspan="1"
+                                        colspan="1" aria-label="Ticket ID: activate to sort column descending"
+                                        style="width: 94px;" aria-sort="ascending">Ticket ID</th>
+                                    <th class="sorting" tabindex="0" aria-controls="listTickets" rowspan="1" colspan="1"
+                                        aria-label="Subject: activate to sort column ascending" style="width: 264px;">
+                                        Subject</th>
+                                    <th class="sorting" tabindex="0" aria-controls="listTickets" rowspan="1" colspan="1"
+                                        aria-label="Department: activate to sort column ascending" style="width: 92px;">
+                                        Department</th>
+                                    <th class="sorting" tabindex="0" aria-controls="listTickets" rowspan="1" colspan="1"
+                                        aria-label="Created By: activate to sort column ascending" style="width: 89px;">
+                                        Created By</th>
+                                    <th class="sorting" tabindex="0" aria-controls="listTickets" rowspan="1" colspan="1"
+                                        aria-label="Created: activate to sort column ascending" style="width: 64px;">
+                                        Created</th>
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Status"
+                                        style="width: 56px;">Status</th>
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""
+                                        style="width: 84px;"></th>
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""
+                                        style="width: 40px;"></th>
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""
+                                        style="width: 52px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row" class="odd" *ngFor="let ticket of tickets; let i = index">
+                                    <td>{{ticket.serial_no}}-{{i}}</td>
+                                    <td class="sorting_1">{{ticket.ticket_id}}</td>
+                                    <td>{{ticket.subject}}</td>
+                                    <td>{{ticket.department}}</td>
+                                    <td>{{ticket.created_by}}</td>
+                                    <td>{{ticket.created}}</td>
+                                    <td><span [ngStyle]="{backgroundColor:getColor(i)}"
+                                            class="status">{{ticket.status}}</span></td>
+                                    <td><button class="btn btn-success view-ticket" mat-button
+                                            (click)="openViewTicket(ticket.serial_no)">View Ticket</button></td>
+                                    <td><button class="btn btn-warning btn-xs update status" (click)="openEditTicket(ticket.serial_no)">
+                                            &nbsp;&nbsp;Edit&nbsp;&nbsp; </button></td>
+                                    <td><button type="button" name="delete" id="28"
+                                            class="btn btn-danger btn-xs delete status">Close</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="listTickets_processing" class="dataTables_processing panel panel-default"
+                            style="display: none;">Processing...</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="dataTables_info" id="listTickets_info" role="status" aria-live="polite">number of
+                            entries</div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="listTickets_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button previous disabled pagination" id="listTickets_previous"><a
+                                        href="#" aria-controls="listTickets" data-dt-idx="0" tabindex="0">Previous</a>
+                                </li>
+                                <li class="paginate_button active"><a href="#" aria-controls="listTickets"
+                                        data-dt-idx="1" tabindex="0">1</a></li>
+                                <li class="paginate_button next disabled" id="listTickets_next"><a href="#"
+                                        aria-controls="listTickets" data-dt-idx="2" tabindex="0">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ticketModal" class="modal fade" style="display: none;">
+            <div class="modal-dialog">
+                <form method="post" id="ticketForm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h4 class="modal-title"><i class="fa fa-plus"></i> Edit Ticket</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- <div class="form-group" <label="" for="subject">Subject
+                                    <input type="text" class="form-control" id="subject" name="subject"
+                                        placeholder="Subject" required="">
+                                </div> -->
+                            <div class="form-group">
+                                <label for="department" class="control-label">Department</label>
+                                <select id="department" name="department" class="form-control"
+                                    placeholder="Department...">
+                                    <option value="1">Support</option>
+                                    <option value="2">Sales</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="control-label">Message</label>
+                                <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="status" class="control-label">Status</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" id="open" value="0" checked="" required="">Open
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" id="close" value="1" required="">Close
+                                </label>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="ticketId" id="ticketId" value="31">
+                            <input type="hidden" name="action" id="action" value="updateTicket">
+                            <input type="submit" name="save" id="save" class="btn btn-info" value="Save Ticket">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

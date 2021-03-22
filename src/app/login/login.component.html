@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 panel">
+            <div class="panel-header" translate>UserLogin</div>
+            <form [formGroup]="myForm" (ngSubmit)="loginProcess()">
+                <div class="input-group">
+                    <span class="icon-style"><i class="bi bi-person"></i></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="email"
+                        style="background:white;" required formControlName='email'>
+                </div>
+                <div class="input-group">
+                    <span class="icon-style"><i class="bi bi-briefcase"></i></span>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="password"
+                        required formControlName='password'>
+                </div>
+                <button type="submit" class="btn btn-success" translate>Login</button>
+                <!-- <button mat-button>Login</button> -->
+            </form>
+            <div style="margin:10px 0px 15px 0px;">
+                <div class="col-sm-12 controls">
+                    Admin: admin@ikslogics.com<br>
+                    <span translate>Password</span>:123 <br><br>
+                    <span translate>User</span>: saad@ikslogics.com<br>
+                    <span translate>Password</span>:123
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 panel">
+            <!-- translation page -->
+            <h1 translate>Title</h1>
+            <button class="btn btn-light" (click)="switchLanguage('en')">en</button>
+            <button class="btn btn-light" (click)="switchLanguage('fr')" style="margin-left: 5px;">fr</button>
+            <i class="bi" style="float:right;"
+                [class.bi-star-fill]="show"
+                [class.bi-star]="!show"
+                (click)="changeIcon()"
+            ></i>
+            <div translate>LoremIpsum</div>
+        </div>
+    </div>
+</div>

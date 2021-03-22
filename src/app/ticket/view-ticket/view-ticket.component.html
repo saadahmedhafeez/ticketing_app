@@ -1,0 +1,49 @@
+<section class="comment-list">
+    <article class="row">
+        <div class="col-md-10 col-sm-10">
+            <div class="panel panel-default arrow left">
+                <div class="panel-heading right">
+                    <span class="ticket-title">
+                        <i class="bi bi-envelope-open heading" *ngIf="ticket.status != 'Closed'"></i>
+                        <i class="bi bi-envelope heading" *ngIf="ticket.status == 'Closed'" style="color: red;"></i>
+                        &nbsp;{{ticket.subject}}</span>
+                </div>
+                <div class="panel-body">
+                    <div class="comment-post">
+                        <p>{{ticket.msg}}</p>
+                    </div>
+                </div>
+                <div class="panel-heading right">
+                    <i class="bi bi-clock">&nbsp;{{ticket.created}}</i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-person-circle">&nbsp;{{userName}}</i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="bi bi-folder-fill">&nbsp;{{ticket.department}}</i>
+                </div>
+            </div>
+        </div>
+    </article>
+
+
+    <article class="row" *ngFor="let msg of msgs">
+        <div class="col-md-10 col-sm-10">
+            <div class="panel panel-default arrow right">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-user"></span> <i class="bi bi-person-circle">&nbsp;{{userName}}</i>
+                    &nbsp;&nbsp;<i class="bi bi-clock">&nbsp;{{msgTime}}</i>
+                    <i class="bi bi-folder-fill">&nbsp;{{ticket.department}}</i>
+                </div>
+                <div class="panel-body">
+                    <div class="comment-post">
+                            &nbsp;&nbsp;&nbsp;&nbsp;{{msg+ " "}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <form (ngSubmit)="changeMsg(msg1.value)">
+        <div class="col-md-10 col-sm-10">
+            <textarea class="form-control" placeholder="Enter your reply..." #msg1></textarea>
+            <input type="submit" class="btn btn-success" value="Reply" style="margin-top: 5px;">
+        </div>
+    </form>
+</section>
